@@ -17,3 +17,4 @@
 
 * When you click a CharComponent it should be removed from the entered tet
 
+```
