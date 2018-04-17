@@ -5,9 +5,9 @@ import Person from "./Person/Person";
 class App extends Component {
   state = {
     persons: [
-      { id:"1", name: 'Max', age: 29 },
-      { id:"2", name: 'Danny', age: 31 },
-      { id:"3", name: 'Stephen', age: 44 },
+      { id: "1", name: 'Max', age: 29 },
+      { id: "2", name: 'Danny', age: 31 },
+      { id: "3", name: 'Stephen', age: 44 },
     ]
   }
 
@@ -27,12 +27,12 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState( { persons: persons} )
+    this.setState({ persons: persons })
   }
 
   deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();
-    
+
     // es6 syntax
     const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
@@ -50,11 +50,11 @@ class App extends Component {
     // another way to style components not in a style sheet 
     const style = {
       backgroundColor: 'green',
-      color:'white',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
     }
 
     // variable we out putting in the return
@@ -67,9 +67,9 @@ class App extends Component {
             return <Person
               click={() => this.deletePersonHandler(index)}
               name={person.name}
-              age={person.age} 
+              age={person.age}
               key={person.id}
-              changed={(event) => this.nameChangedHandler(event, person.id)}/>
+              changed={(event) => this.nameChangedHandler(event, person.id)} />
           })}
         </div >
       );
@@ -79,23 +79,24 @@ class App extends Component {
 
     // dynamically adding and assigning classes
     const classes = []
-    if(this.state.persons.length <= 2){
+    if (this.state.persons.length <= 2) {
       classes.push('red'); // classes = ['red']
     }
-    if(this.state.persons.length <= 1){
+    if (this.state.persons.length <= 1) {
       classes.push('bold'); // classes = ['red', 'bold']
     }
 
 
     return (
-      <div className="App">
-        <h1>I am a react App</h1>
-        <p className={classes.join(' ')}>Really working! </p>
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        {persons}
-      </div>
+        <div className="App">
+          <h1>I am a react App</h1>
+          <p className={classes.join(' ')}>Really working! </p>
+          <button
+            style={style}
+            onClick={this.togglePersonsHandler}>Toggle Persons</button>
+          {persons}
+        </div>
+      
     );
   }
 }

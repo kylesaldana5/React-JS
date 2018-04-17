@@ -2,7 +2,7 @@ import React from "react";
 import './Person.css';
 
 // function component try to use these as much as possible as to keep a more managable state 
-const person = (props) => {
+const person = (props) => {     
     return (
         <div className="Person">
             <p onClick={props.click}>I {props.name}! And i am {props.age} years old!</p>
