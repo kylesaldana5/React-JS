@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from'./App.css';
 import Person from "./Person/Person";
 
 class App extends Component {
@@ -47,18 +47,11 @@ class App extends Component {
 
   render() {
 
-    // another way to style components not in a style sheet 
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-    }
-
     // variable we out putting in the return
     let persons = null;
+
+    // binding css variable 
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -74,26 +67,26 @@ class App extends Component {
         </div >
       );
 
-      style.backgroundColor = "red";
+      btnClass = classes.Red;
     }
 
     // dynamically adding and assigning classes
-    const classes = []
+    const assignClasses = []
     if (this.state.persons.length <= 2) {
-      classes.push('red'); // classes = ['red']
+      assignClasses.push(classes.red); // classes = ['red']
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold'); // classes = ['red', 'bold']
+      assignClasses.push(classes.bold); // classes = ['red', 'bold']
     }
 
 
     return (
-        <div className="App">
+        <div className={classes.App}>
           <h1>I am a react App</h1>
-          <p className={classes.join(' ')}>Really working! </p>
+        <p className={assignClasses.join(' ')}>Really working! </p>
           <button
-            style={style}
-            onClick={this.togglePersonsHandler}>Toggle Persons</button>
+          className={btnClass}
+          onClick={this.togglePersonsHandler}>Toggle Persons</button>
           {persons}
         </div>
       
