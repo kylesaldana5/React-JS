@@ -1,17 +1,55 @@
 import React, { Component } from 'react';
-import classes from'./App.css';
+import classes from './App.css';
 import Persons from "../components/Persons/Persons";
 import Cockpit from '../components/Cockpit/Cockpit';
 // import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: "1", name: 'Max', age: 29 },
-      { id: "2", name: 'Danny', age: 31 },
-      { id: "3", name: 'Stephen', age: 44 },
-    ]
+
+  constructor(props) {
+    super(props);
+    console.log('app.js inside constructor', props);
+    this.state = {
+      persons: [
+        { id: "1", name: 'Max', age: 29 },
+        { id: "2", name: 'Danny', age: 31 },
+        { id: "3", name: 'Stephen', age: 44 },
+      ]
+    }
   }
+
+  // Component life cycles
+  componentWillMount() {
+    console.log('app.js inside componentWillMount()');
+  }
+
+  componentDidMount() {
+    console.log('app js inside componentDidMount()', );
+
+  }
+
+  // Component Life cycles -- Update  when triggered by internal change -- STATE
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('UPDATE App js Inside shouldComponentUpdate', nextProps, nextState);
+    return true;
+  }
+
+  componentWillUpdate(nextState, nextProps) {
+    console.log('UPDATE App js Inside componentWIllUpdate', nextProps, nextState);
+  }
+
+  componentDidUpdate() {
+    console.log('UPDATE App js Inside componentDidUpdate');
+  }
+
+  // new es6 way of setting state can also be set in the constructor
+  // state = {
+  //   persons: [
+  //     { id: "1", name: 'Max', age: 29 },
+  //     { id: "2", name: 'Danny', age: 31 },
+  //     { id: "3", name: 'Stephen', age: 44 },
+  //   ]
+  // }
 
   // method for handling the state of the name
   nameChangedHandler = (event, id) => {
@@ -49,31 +87,35 @@ class App extends Component {
 
   render() {
 
+    console.log('app js Inside render');
+
+
     // variable we out putting in the return
     let persons = null;
 
     if (this.state.showPersons) {
       persons = (
-          <Persons
+        <Persons
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
           changed={this.nameChangedHandler}
-          />
+        />
       );
 
-      
+
     }
 
     return (
-        <div className={classes.App}>
+      <div className={classes.App}>
         <Cockpit
-        showPersons={this.state.showPersons}
-        persons={this.state.persons}
-        clicked={this.togglePersonsHandler}
+          appTitle={this.props.title}
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          clicked={this.togglePersonsHandler}
         />
-          {persons}
-        </div>
-      
+        {persons}
+      </div>
+
     );
   }
 }
